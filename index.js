@@ -42,7 +42,7 @@ async function excel() {
             ws[`L${x}`].v = pageTitle
         }
         if(x%100 == 0) {
-            console.log('Multiple of 100 hit. Saving work, and refreshing browser instance')
+            console.log('Multiple of 100 hit. Saving work, and refreshing browser instance to avoid puppeteer crashes')
             xlsx.writeFile(wkbk, './files/test.xlsx')
             await browser.close();
             [browser,page] = await getPage();
@@ -77,5 +77,6 @@ async function retrieveTitle(link, page) {
         return 'Unable to retrieve title'
     }
 }
+
 excel()
 
